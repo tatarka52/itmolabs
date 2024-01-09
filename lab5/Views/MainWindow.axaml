@@ -1,0 +1,77 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:RLab5.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="RLab5.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="VetaLab5">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+
+    <Grid RowDefinitions="*,*" ColumnDefinitions="*,*" Background="#232323">
+        <ListBox Grid.ColumnSpan="2" Background="#232323" BorderBrush="SeaGreen" BorderThickness="0 0 2 2" Grid.Row="0"
+                 Grid.Column="0" ItemsSource="{Binding ContactList}" SelectedItem="{Binding SelectedItem}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Padding="4" Background="Azure" Foreground="Black" FontWeight="Medium"
+                                   Text="{Binding Name}">
+                        </TextBlock>
+                        <TextBlock Padding="4" Background="Gainsboro" Foreground="Black" FontWeight="Medium"
+                                   Text="{Binding Phone}">
+                        </TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <StackPanel Grid.Row="1" Grid.Column="0" Background="#232323" Margin="30">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+                <TextBlock Margin="5" VerticalAlignment="Center" Text="Name:" />
+                <TextBox VerticalContentAlignment="Center" Height="20" Width="240" Name="Name" Margin="5"
+                         Text="{Binding Name, Mode=TwoWay}" BorderBrush="SeaGreen" BorderThickness="2">
+                </TextBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+                <TextBlock Margin="5" VerticalAlignment="Center" Text="Surname:" />
+                <TextBox VerticalContentAlignment="Center" Height="20" Width="240" Name="Surname" Margin="5"
+                         Text="{Binding  Surname, Mode=TwoWay}" BorderBrush="SeaGreen" BorderThickness="2" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+                <TextBlock Margin="5" VerticalAlignment="Center" Text="Phone:" />
+                <TextBox VerticalContentAlignment="Center" Height="20" Width="240" Name="Phone" Margin="5"
+                         Text="{Binding  Phone, Mode=TwoWay}" BorderBrush="SeaGreen" BorderThickness="2" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+                <TextBlock Margin="5" VerticalAlignment="Center" Text="Email:" />
+                <TextBox VerticalContentAlignment="Center" Height="20" Width="240" Name="Email" Margin="5"
+                         Text="{Binding  Email, Mode=TwoWay}" BorderBrush="SeaGreen" BorderThickness="2" />
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1" Margin="60">
+            <Button VerticalAlignment="Center"  Command="{Binding AddContact}" Width="200" Height="50"
+                    HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                    BorderBrush="SeaGreen" BorderThickness="2">
+                Add Contact
+            </Button>
+            <Button VerticalAlignment="Center" Margin="30"  Command="{Binding SaveChanges}" Width="200" Height="50"
+                    HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                    BorderBrush="SeaGreen" BorderThickness="2">
+                Save
+            </Button>
+            </StackPanel>
+    </Grid>
+
+
+</Window>
